@@ -1,0 +1,24 @@
+name: BetterSafety
+version: '${project.version}'
+main: me.ghaxz.bettersafety.BetterSafetyMC
+api-version: 1.19
+
+commands:
+  safemode:
+    description: Activates Safe-mode and stops Players from joining
+    usage: /<command>
+  togglecommands:
+    description: Activates or disables all commands
+    usage: /<command>
+  togglechat:
+    description: Activates or disables the chat
+    usage: /<command>
+  cc:
+    description: Clears chat globally or only for player running the command
+    usage: /<command>
+  kickall:
+    description: Kicks all players from the server
+    usage: /<command>
+  panic:
+    description: Kicks all players except the command sender and enables safemode
+    usage: /<command>
