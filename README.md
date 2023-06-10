@@ -28,4 +28,5 @@ To edit the source code yourself just download this repository and open it in yo
 Downloads (currently only available for 1.19.4):
 
 version 1.1 (10. June 2023): https://drive.google.com/uc?export=download&id=1MNc4kynfQ1WrFjYW7AuGayI3ZO0ud1HP
+  
 version 1.0 (9. June 2023): https://drive.google.com/uc?export=download&id=1KPmPMF7e3B-FMhGf6WorwJoVjIOoInk
