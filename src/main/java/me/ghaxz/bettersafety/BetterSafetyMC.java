@@ -1,12 +1,14 @@
 package me.ghaxz.bettersafety;
 
-import commands.*;
+import me.ghaxz.bettersafety.commands.*;
+import me.ghaxz.bettersafety.util.VerificationProcess;
+import me.ghaxz.bettersafety.util.VerifiedPlayersJSON;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BetterSafetyMC extends JavaPlugin implements Listener {
@@ -15,6 +17,7 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
     private boolean commandsEnabled = true; // Standardmäßig sind Command an
     private boolean chatEnabled = true; // Standardmäßig ist der Chat an
     private boolean safemodeEnabled = false; // Standardmäßig ist der Safemode aus
+    private boolean verificationEnabled = true; // Verification is enabled by default
 
     @Override
     public void onEnable() {
@@ -27,6 +30,7 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
         this.getCommand("kickall").setExecutor(new KickAllCommand());
         this.getCommand("panic").setExecutor(new PanicCommand());
         getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new VerificationProcess(), this);
     }
 
     @Override
@@ -89,5 +93,13 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
 
     public void setSafemodeEnabled(boolean safemodeEnabled) {
         this.safemodeEnabled = safemodeEnabled;
+    }
+
+    public boolean isVerificationEnabled() {
+        return verificationEnabled;
+    }
+
+    public void setVerificationEnabled(boolean verificationEnabled) {
+        this.verificationEnabled = verificationEnabled;
     }
 }
