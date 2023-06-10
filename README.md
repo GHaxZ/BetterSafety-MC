@@ -42,6 +42,6 @@ Version 1.0 (9. June 2023): [_Download_](https://drive.google.com/uc?export=down
 
 <br>
 
-### _Feel free to contribute any new features, or just improve already existing code._
+## _Feel free to contribute any new features, or just improve already existing code._
   
-_To edit the source code yourself, just download this repository and open it in your code editor. Also, Maven is required as a build tool._
+### _To edit the source code yourself, just download this repository and open it in your code editor. Also, Maven is required as a build tool._
