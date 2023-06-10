@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -37,7 +38,7 @@ public class VerificationProcess implements Listener {
                 verificationCodes.put(player.getUniqueId().toString(), VerificationCodeGenerator.generateCode(10));
 
                 player.setGameMode(GameMode.SPECTATOR);
-                player.sendMessage("[BetterSafety] Welcome to the server, please verify yourself, by entering the verification code.");
+                player.sendMessage(BetterSafetyMC.prefix + "Welcome to the server, please verify yourself, by entering the verification code.");
                 player.sendMessage(ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString()));
             }
         }
@@ -54,12 +55,23 @@ public class VerificationProcess implements Listener {
 
                 player.setGameMode(Bukkit.getDefaultGameMode());
 
-                player.sendMessage("[BetterSafety] You are now verified.");
+                player.sendMessage(BetterSafetyMC.prefix + "You are now verified.");
+            } else {
+                player.sendMessage(BetterSafetyMC.prefix + "This is not the correct verification code.");
+                player.sendMessage(BetterSafetyMC.prefix + "Welcome to the server, please verify yourself, by entering the verification code.");
+                player.sendMessage(ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString()));
             }
-        } else {
-            player.sendMessage("[BetterSafety] This is not the correct verification code.");
-            player.sendMessage("[BetterSafety] Welcome to the server, please verify yourself, by entering the verification code.");
-            player.sendMessage(ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString()));
+        }
+
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent event) {
+        Player player = event.getPlayer();
+
+        if(!verifiedPlayersSave.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
+            event.setCancelled(true);
         }
     }
 }

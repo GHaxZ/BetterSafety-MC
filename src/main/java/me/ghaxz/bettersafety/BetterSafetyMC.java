@@ -1,6 +1,7 @@
 package me.ghaxz.bettersafety;
 
 import me.ghaxz.bettersafety.commands.*;
+import me.ghaxz.bettersafety.util.ConfigFile;
 import me.ghaxz.bettersafety.util.VerificationProcess;
 import me.ghaxz.bettersafety.util.VerifiedPlayersSave;
 import org.bukkit.ChatColor;
@@ -13,15 +14,18 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
     private static BetterSafetyMC instance;
     public static final String prefix = ChatColor.YELLOW + "[BetterSafety]" + ChatColor.WHITE + " ";
     private VerifiedPlayersSave verifiedPlayersSave;
+    private ConfigFile configFile;
     private boolean commandsEnabled = true; // Standardmäßig sind Command an
     private boolean chatEnabled = true; // Standardmäßig ist der Chat an
     private boolean safemodeEnabled = false; // Standardmäßig ist der Safemode aus
-    private boolean verificationEnabled = true; // Verification is enabled by default
+    private boolean verificationEnabled; // Enables or disables verification based on config.yml settings
 
     @Override
     public void onEnable() {
         instance = this;
         verifiedPlayersSave = new VerifiedPlayersSave();
+        configFile = new ConfigFile();
+        verificationEnabled = configFile.getVerificationEnabled();
 
         this.getCommand("safemode").setExecutor(new SafemodeCommand());
         this.getCommand("togglecommands").setExecutor(new TogglecommandsCommand());

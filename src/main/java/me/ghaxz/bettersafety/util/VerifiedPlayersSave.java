@@ -11,11 +11,11 @@ import java.util.List;
 
 public class VerifiedPlayersSave {
     List<String> verifiedUUIDs = new ArrayList<>();
-    private BetterSafetyMC plugin = BetterSafetyMC.getInstance();
+    private final BetterSafetyMC plugin = BetterSafetyMC.getInstance();
     private final String filepath = "verifiedPlayers.yml";
 
-    private File verifiedPlayersFile = new File(plugin.getDataFolder(), filepath);
-    private FileConfiguration verifiedPlayersConfig = YamlConfiguration.loadConfiguration(verifiedPlayersFile);
+    private final File verifiedPlayersFile = new File(plugin.getDataFolder(), filepath);
+    private final FileConfiguration verifiedPlayersConfig = YamlConfiguration.loadConfiguration(verifiedPlayersFile);
 
     public VerifiedPlayersSave() {
         if(!verifiedPlayersFile.exists()) {
@@ -41,7 +41,7 @@ public class VerifiedPlayersSave {
         try {
             verifiedPlayersConfig.save(verifiedPlayersFile);
         } catch (IOException e) {
-            Bukkit.getLogger().warning("[BetterSafety] Failed saving the verifiedPlayers.yml file.");
+            Bukkit.getLogger().severe("[BetterSafety] Failed saving the verifiedPlayers.yml file: " + e.getMessage());
         }
     }
 
