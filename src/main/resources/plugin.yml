@@ -1,5 +1,5 @@
 name: BetterSafety
-version: '${project.version}'
+version: 1.1
 main: me.ghaxz.bettersafety.BetterSafetyMC
 api-version: 1.19
 
