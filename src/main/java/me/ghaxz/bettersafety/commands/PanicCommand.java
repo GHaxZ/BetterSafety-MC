@@ -8,6 +8,8 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import me.ghaxz.bettersafety.util.PlayerManager;
 
+// Runs the kickAllPlayers() method in the PlayerManager class
+// Also sets safe-mode to enabled
 public class PanicCommand implements CommandExecutor {
 
     @Override

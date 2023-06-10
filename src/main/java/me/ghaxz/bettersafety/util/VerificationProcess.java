@@ -4,20 +4,18 @@ import me.ghaxz.bettersafety.BetterSafetyMC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.*;
 
 import java.util.HashMap;
 
 public class VerificationProcess implements Listener {
-    private HashMap<String, String> verificationCodes = new HashMap<>();
-    private VerifiedPlayersSave verifiedPlayersSave = new VerifiedPlayersSave();
+    private HashMap<String, String> verificationCodes = new HashMap<>(); // Stores player UUIDs and their respective verification codes
+    private VerifiedPlayersSave verifiedPlayersSave = new VerifiedPlayersSave(); // Contains the verifiedPlayers.yml file where verified players get stored
+
+    // If the player is not verified yet, stop them from moving
     @EventHandler
     public void onPlayerMovement(PlayerMoveEvent event) {
         Player player = event.getPlayer();
@@ -29,6 +27,15 @@ public class VerificationProcess implements Listener {
         }
     }
 
+    // If player quits and isn't verified yet, remove their verification code from the HashMap
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+
+        verificationCodes.remove(player.getUniqueId().toString());
+    }
+
+    // Checks if the newly joined player is verified, if not set them into spectator mode and start the verification process
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if(BetterSafetyMC.getInstance().isVerificationEnabled()) {
@@ -44,28 +51,32 @@ public class VerificationProcess implements Listener {
         }
     }
 
+    // Checks if the player who sent the chat message is verified yet, if not, checks if the code is correct
     @EventHandler
     public void onChat(PlayerChatEvent event) {
         Player player = event.getPlayer();
 
-        if(!verifiedPlayersSave.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
-            if(event.getMessage().trim().equals(verificationCodes.get(player.getUniqueId().toString()))) {
-                verificationCodes.remove(player.getUniqueId().toString());
-                verifiedPlayersSave.addVerifiedPlayer(player.getUniqueId().toString());
+        if(BetterSafetyMC.getInstance().isVerificationEnabled()){
+            if(!verifiedPlayersSave.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
+                if(event.getMessage().trim().equals(verificationCodes.get(player.getUniqueId().toString()))) {
+                    verificationCodes.remove(player.getUniqueId().toString());
+                    verifiedPlayersSave.addVerifiedPlayer(player.getUniqueId().toString());
 
-                player.setGameMode(Bukkit.getDefaultGameMode());
+                    player.setGameMode(Bukkit.getDefaultGameMode());
 
-                player.sendMessage(BetterSafetyMC.prefix + "You are now verified.");
-            } else {
-                player.sendMessage(BetterSafetyMC.prefix + "This is not the correct verification code.");
-                player.sendMessage(BetterSafetyMC.prefix + "Welcome to the server, please verify yourself, by entering the verification code.");
-                player.sendMessage(ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString()));
+                    player.sendMessage(BetterSafetyMC.prefix + "You are now verified.");
+                } else {
+                    player.sendMessage(BetterSafetyMC.prefix + "This is not the correct verification code.");
+                    player.sendMessage(BetterSafetyMC.prefix + "Welcome to the server, please verify yourself, by entering the verification code.");
+                    player.sendMessage(ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString()));
+                }
+
+                event.setCancelled(true); // Cancel the chat event so other players don't see the verification code sent by other player
             }
         }
-
-        event.setCancelled(true);
     }
 
+    // Stops unverified players from running commands
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();

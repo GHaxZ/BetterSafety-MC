@@ -15,10 +15,10 @@ commands:
     usage: /<command>
   cc:
     description: Clears chat globally or only for player running the command
-    usage: /<command>
+    usage: /<command> <global>
   kickall:
     description: Kicks all players from the server
     usage: /<command>
   panic:
-    description: Kicks all players except the command sender and enables safemode
+    description: Kicks all players except the command sender and enables safe-mode
     usage: /<command>
