@@ -7,7 +7,7 @@ public class VerificationCodeGenerator {
         String code = "";
 
         for(int x = 0; x < length; x++) {
-            code += characters.charAt(randInt(0, length - 1));
+            code += characters.charAt(randInt(0, characters.length()));
         }
 
         return code;

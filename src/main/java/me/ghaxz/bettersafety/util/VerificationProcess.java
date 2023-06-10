@@ -4,6 +4,7 @@ import me.ghaxz.bettersafety.BetterSafetyMC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,13 +16,13 @@ import java.util.HashMap;
 
 public class VerificationProcess implements Listener {
     private HashMap<String, String> verificationCodes = new HashMap<>();
-    private VerifiedPlayersJSON verifiedPlayersJSON = new VerifiedPlayersJSON();
+    private VerifiedPlayersSave verifiedPlayersSave = new VerifiedPlayersSave();
     @EventHandler
     public void onPlayerMovement(PlayerMoveEvent event) {
         Player player = event.getPlayer();
 
         if(BetterSafetyMC.getInstance().isVerificationEnabled()) {
-            if(!verifiedPlayersJSON.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
+            if(!verifiedPlayersSave.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
                 event.setCancelled(true);
             }
         }
@@ -29,14 +30,14 @@ public class VerificationProcess implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        for(String uuid : verifiedPlayersJSON.getVerifiedUUIDs()) {
+        for(String uuid : verifiedPlayersSave.getVerifiedUUIDs()) {
             Bukkit.broadcastMessage(uuid);
         }
 
         if(BetterSafetyMC.getInstance().isVerificationEnabled()) {
             Player player = event.getPlayer();
 
-            if(!verifiedPlayersJSON.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
+            if(!verifiedPlayersSave.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
                 verificationCodes.put(player.getUniqueId().toString(), VerificationCodeGenerator.generateCode(10));
 
                 player.setGameMode(GameMode.SPECTATOR);
@@ -50,10 +51,10 @@ public class VerificationProcess implements Listener {
     public void onChat(PlayerChatEvent event) {
         Player player = event.getPlayer();
 
-        if(!verifiedPlayersJSON.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
+        if(!verifiedPlayersSave.getVerifiedUUIDs().contains(player.getUniqueId().toString())) {
             if(event.getMessage().trim().equals(verificationCodes.get(player.getUniqueId().toString()))) {
                 verificationCodes.remove(player.getUniqueId().toString());
-                verifiedPlayersJSON.addVerifiedPlayer(player.getUniqueId().toString());
+                verifiedPlayersSave.addVerifiedPlayer(player.getUniqueId().toString());
 
                 player.setGameMode(Bukkit.getDefaultGameMode());
 
