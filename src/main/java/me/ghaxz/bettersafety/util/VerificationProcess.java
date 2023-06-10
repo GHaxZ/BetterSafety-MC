@@ -30,10 +30,6 @@ public class VerificationProcess implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        for(String uuid : verifiedPlayersSave.getVerifiedUUIDs()) {
-            Bukkit.broadcastMessage(uuid);
-        }
-
         if(BetterSafetyMC.getInstance().isVerificationEnabled()) {
             Player player = event.getPlayer();
 
