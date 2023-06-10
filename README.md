@@ -1,13 +1,13 @@
 # BetterSafety-MC
-A Minecraft Paper Server Plugin that includes simple moderation functionality.
+## A Minecraft Paper Server Plugin that includes simple moderation functionality.
 
-Currently included features:
+_Currently included features:_
 - Verification system
   New players have to enter a verification code once, before being able to play
   
 Features can be disabled/enabled in the plugin data folder in the "config.yml" file.
 
-Currently included commands:
+_Currently included commands:_
 - /cc <global>
   Clears the chat for the player running the command. Players with OP rights can also add the optional global argument to clear the chat server wide.
 - /kickall
@@ -25,7 +25,7 @@ Feel free to contribute any new features or just improve already existing code.
   
 To edit the source code yourself just download this repository and open it in your code editor.
  
-Downloads (currently only available for 1.19.4):
+# Downloads (currently only available for 1.19.4):
 
 version 1.1 (10. June 2023): https://drive.google.com/uc?export=download&id=1MNc4kynfQ1WrFjYW7AuGayI3ZO0ud1HP
   
