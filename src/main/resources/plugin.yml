@@ -8,7 +8,7 @@ commands:
     description: Activates Safe-mode and stops Players from joining
     usage: /<command>
   togglecommands:
-    description: Activates or disables all commands
+    description: Activates or disables all me.ghaxz.bettersafety.commands
     usage: /<command>
   togglechat:
     description: Activates or disables the chat

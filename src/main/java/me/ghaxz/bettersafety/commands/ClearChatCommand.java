@@ -1,4 +1,4 @@
-package commands;
+package me.ghaxz.bettersafety.commands;
 
 import me.ghaxz.bettersafety.BetterSafetyMC;
 import org.bukkit.Bukkit;
