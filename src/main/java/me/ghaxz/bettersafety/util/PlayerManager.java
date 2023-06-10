@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 public class PlayerManager {
 
+    // Toggles safe-mode on or off and informs entire server
     public static void toggleSafemode() {
         BetterSafetyMC.getInstance().setSafemodeEnabled(!BetterSafetyMC.getInstance().isSafemodeEnabled());
         if(BetterSafetyMC.getInstance().isSafemodeEnabled()) {
@@ -17,6 +18,7 @@ public class PlayerManager {
         }
     }
 
+    // Kicks all players except the command sender
     public static void kickAllPlayers(CommandSender commandSender) {
         for(Player player : Bukkit.getOnlinePlayers()) {
             if(!player.equals(commandSender)) {

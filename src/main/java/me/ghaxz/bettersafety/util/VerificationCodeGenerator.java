@@ -1,5 +1,6 @@
 package me.ghaxz.bettersafety.util;
 
+// Used for generating verification codes
 public class VerificationCodeGenerator {
     private static String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
