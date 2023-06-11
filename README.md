@@ -36,7 +36,7 @@ _**Currently included commands:**_
 
 # Downloads (currently only available for 1.19.4):
 
-Version 1.1 (10. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1MNc4kynfQ1WrFjYW7AuGayI3ZO0ud1HP)
+Version 1.1 (10. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1sd9xiv2Sebg6qbK7juYD42FsvVAHbTsq)
   
 Version 1.0 (9. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1KPmPMF7e3B-FMhGf6WorwJoVjIOoInk)
 
