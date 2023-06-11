@@ -8,8 +8,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
+import org.bukkit.event.server.ServerEvent;
+import org.bukkit.event.server.ServerLoadEvent;
+import org.bukkit.util.ChatPaginator;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class VerificationProcess implements Listener {
     private HashMap<String, String> verificationCodes = new HashMap<>(); // Stores player UUIDs and their respective verification codes
@@ -68,7 +72,11 @@ public class VerificationProcess implements Listener {
                 } else {
                     player.sendMessage(BetterSafetyMC.prefix + "This is not the correct verification code.");
                     player.sendMessage(BetterSafetyMC.prefix + "Welcome to the server, please verify yourself, by entering the verification code.");
-                    player.sendMessage(ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString()));
+
+                    /*Checks for null, because if a plugin reload occurs during the verification process the verification process
+                    breaks and gives the verification code "null". If this happens, the player is asked to reconnect*/
+                    player.sendMessage(((verificationCodes.get(player.getUniqueId().toString()) == null) ? ChatColor.RED + "An error occurred, please reconnect." :
+                            ChatColor.AQUA + verificationCodes.get(player.getUniqueId().toString())));
                 }
 
                 event.setCancelled(true); // Cancel the chat event so other players don't see the verification code sent by other player

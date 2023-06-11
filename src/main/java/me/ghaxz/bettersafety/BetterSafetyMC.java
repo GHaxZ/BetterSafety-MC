@@ -23,6 +23,7 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
     // Runs on Plugin load
     @Override
     public void onEnable() {
+
         instance = this;
         verifiedPlayersSave = new VerifiedPlayersSave();
         configFile = new ConfigFile();
@@ -42,7 +43,7 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
     // Runs on plugin unload
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+
     }
 
     // Runs when a player tries to log into server
@@ -75,6 +76,9 @@ public final class BetterSafetyMC extends JavaPlugin implements Listener {
             event.setCancelled(true);
         }
     }
+
+    // Kicks all unverified players on plugin reload, because a plugin reload can cause issues in the verification process
+
 
     public String getPrefix() {
         return prefix;

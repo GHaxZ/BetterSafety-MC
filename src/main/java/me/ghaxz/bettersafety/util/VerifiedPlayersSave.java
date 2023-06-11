@@ -4,6 +4,8 @@ import me.ghaxz.bettersafety.BetterSafetyMC;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.List;
 
 // Manages the verifiedPlayers.yml file
 public class VerifiedPlayersSave {
-    List<String> verifiedUUIDs = new ArrayList<>(); // Stores all verified UUIDs
+    private List<String> verifiedUUIDs = new ArrayList<>(); // Stores all verified UUIDs
     private final BetterSafetyMC plugin = BetterSafetyMC.getInstance();
     private final String filepath = "verifiedPlayers.yml"; // specifies the file name for the verifiedPlayers.yml file
 
