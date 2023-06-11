@@ -38,7 +38,7 @@ _**Currently included commands:**_
 
 Version 1.1 (10. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1PBvVGGAn4VDicBC0HTJf5VVQJzZtY5Go)
   
-Version 1.0 (9. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1KPmPMF7e3B-FMhGf6WorwJoVjIOoInk)
+Version 1.0 (9. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1KPmPMF7e3B-FMhGf6WorwJoVjIOoInkg)
 
 <br>
 
