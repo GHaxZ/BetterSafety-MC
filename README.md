@@ -32,16 +32,6 @@ _**Currently included commands:**_
 
   > Disables the chat on the entire server. To enable the chat again, run /togglechat again. Can be run by players with op rights.
 
-<br>
-
-# Downloads (currently only available for 1.19.4):
-
-Version 1.1 (10. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=12zQopQ8YSB_4T7gi_cuR3z8fhaplIKFt)
-  
-Version 1.0 (9. June 2023): [_Download_](https://drive.google.com/uc?export=download&id=1KPmPMF7e3B-FMhGf6WorwJoVjIOoInkg)
-
-<br>
-
 ## _Feel free to contribute any new features, or just improve already existing code._
   
 ### _To edit the source code yourself, just download this repository and open it in your code editor. Also, Maven is required as a build tool._
